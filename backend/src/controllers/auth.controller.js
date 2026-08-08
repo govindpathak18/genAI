@@ -5,6 +5,12 @@ import jwt from "jsonwebtoken"
 import tokenBlacklistModel from "../models/blacklist.model.js"
 import { sendOtpEmail } from "../services/email.service.js"
 
+const cookieOptions = {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none"
+}
+
 /**
  * @name registerUserController
  * @description register a new user, expects username, email and password in the request body
@@ -101,11 +107,7 @@ async function verifyOtpController(req, res) {
             { expiresIn: "1d" }
         )
 
-        res.cookie("token", token, {
-            httpOnly: true,
-            sameSite: "lax",
-            secure: process.env.NODE_ENV === "production"
-        })
+        res.cookie("token", token, cookieOptions)
 
         res.status(201).json({
             message: "Email verified successfully",
@@ -292,11 +294,8 @@ async function loginUserController(req, res) {
             { expiresIn: "1d" }
         )
 
-        res.cookie("token", token, {
-            httpOnly: true,
-            sameSite: "lax",
-            secure: process.env.NODE_ENV === "production"
-        })
+        res.cookie("token", token, cookieOptions)
+        
         res.status(200).json({
             message: "User loggedIn successfully.",
             user: {
@@ -331,11 +330,7 @@ async function logoutUserController(req, res) {
             }
         }
 
-        res.clearCookie("token", {
-            httpOnly: true,
-            sameSite: "lax",
-            secure: process.env.NODE_ENV === "production"
-        })
+        res.clearCookie("token", cookieOptions)
 
         res.status(200).json({
             message: "User logged out successfully"
