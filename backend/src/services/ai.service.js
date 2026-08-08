@@ -345,17 +345,25 @@ async function generateInterviewReport({
  * @returns {Promise<Buffer>}
  */
 async function htmlToPdf(html) {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: [
+            "--no-sandbox",
+            "--disable-setuid-sandbox",
+            "--disable-dev-shm-usage"
+        ]
+    });
 
     try {
         const page = await browser.newPage();
 
         await page.setContent(html, {
-            waitUntil: "networkidle0"
+            waitUntil: "domcontentloaded"
         });
 
         return await page.pdf({
             format: "A4",
+            printBackground: true,
             margin: {
                 top: "20mm",
                 bottom: "20mm",
@@ -363,7 +371,6 @@ async function htmlToPdf(html) {
                 right: "15mm"
             }
         });
-
     } finally {
         await browser.close();
     }
