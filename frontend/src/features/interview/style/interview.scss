@@ -1,0 +1,753 @@
+$bg-page: #f4f7ef;
+$bg-card: #ffffff;
+$bg-panel: #fbfdf7;
+$border-color: #e2ebda;
+$text-primary: #17311d;
+$text-muted: #5d715d;
+$accent: #2d7a46;
+$accent-strong: #1f4e2f;
+$accent-soft: #edf6e8;
+$accent-warm: #d89a2b;
+$accent-rose: #b45252;
+$font-stack: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+.interview-report-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #f7f9f1 0%, #eef4e8 100%);
+    color: $text-primary;
+    font-family: $font-stack;
+    box-sizing: border-box;
+}
+
+.report-main-content {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 1.5rem 24px 2.5rem;
+    box-sizing: border-box;
+    gap: 1.35rem;
+    align-items: stretch;
+}
+
+/* ---------- Header ---------- */
+
+.report-shell-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: linear-gradient(90deg, #315a38 0%, #2b6e3e 100%);
+    color: #f5fbf5;
+    border-bottom: none;
+}
+
+.report-shell-header .container {
+    width: 1200px;
+    max-width: calc(100% - 48px);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 0.85rem 0;
+}
+
+.report-shell-header .dashboard-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.report-shell-header .brand-mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.16);
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+}
+
+.report-shell-header .dashboard-brand h1 {
+    margin: 0;
+    font-size: 1.05rem;
+    color: #f5fbf5;
+}
+
+.report-shell-header .dashboard-header__nav {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+}
+
+.report-shell-header .dashboard-header__nav-item {
+    color: rgba(245, 251, 245, 0.78);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding-bottom: 0.2rem;
+    border-bottom: 2px solid transparent;
+}
+
+.report-shell-header .dashboard-header__nav-item.is-active {
+    color: #f5fbf5;
+    border-bottom-color: rgba(245, 251, 245, 0.7);
+}
+
+.report-shell-header .dashboard-header__nav-item:hover {
+    color: #f5fbf5;
+}
+
+.report-shell-header .dashboard-header__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+/* ---------- Hero ---------- */
+
+.report-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(260px, 330px) minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: stretch;
+    width: 100%;
+}
+
+.report-panel {
+    background: $bg-card;
+    border: 1px solid rgba(139, 167, 132, 0.16);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 26px rgba(56, 77, 59, 0.06);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.report-score-card {
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.report-score-ring {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    border: 8px solid $accent;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(180deg, #f4fbf1 0%, #e7f2e4 100%);
+    flex-shrink: 0;
+}
+
+.report-score-ring strong {
+    font-size: 1.7rem;
+    color: $accent-strong;
+    line-height: 1;
+}
+
+.report-score-ring span {
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: $text-muted;
+    margin-top: 0.2rem;
+}
+
+.report-fit-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: $accent-soft;
+    color: $accent-strong;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.report-score-copy {
+    margin: 0;
+    color: $text-muted;
+    line-height: 1.6;
+    font-size: 0.9rem;
+}
+
+.report-insight-card {
+    justify-content: center;
+    gap: 0.85rem;
+}
+
+.report-insight-eyebrow {
+    margin: 0;
+    color: $text-muted;
+    font-size: 0.95rem;
+}
+
+.report-insight-eyebrow strong {
+    font-weight: 700;
+}
+
+.report-insight-copy {
+    margin: 0;
+    color: $text-primary;
+    line-height: 1.75;
+}
+
+.report-pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.report-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    background: $accent-soft;
+    color: $accent-strong;
+    font-size: 0.82rem;
+    font-weight: 700;
+    border: 1px solid rgba(45, 122, 70, 0.14);
+}
+
+.report-pill--warning {
+    background: rgba(180, 82, 82, 0.1);
+    color: $accent-rose;
+    border-color: rgba(180, 82, 82, 0.2);
+}
+
+.report-pill--muted {
+    background: $bg-panel;
+    color: $text-muted;
+    border-color: $border-color;
+}
+
+/* ---------- Four analysis cards: responsive 2x2 alignment ---------- */
+
+.report-analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    align-items: stretch;
+    width: 100%;
+}
+
+/*
+ * No fixed height is used here.
+ * Grid rows automatically take the height required by the tallest card
+ * in that row, so both cards in a row have the same maximum height.
+ */
+.report-analysis-grid .report-panel {
+    min-width: 0;
+    height: auto;
+    padding: 0;
+    overflow: hidden;
+    align-self: stretch;
+    border-radius: 18px;
+    background: #ffffff;
+    border: 1px solid rgba(139, 167, 132, 0.14);
+    box-shadow: 0 8px 26px rgba(56, 77, 59, 0.055);
+}
+
+/* Compact heading area */
+.report-panel__header {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-start;
+    min-height: 0;
+    padding: 18px 28px 16px;
+    box-sizing: border-box;
+    background: linear-gradient(100deg, $accent-strong 0%, $accent 100%);
+    border-radius: 18px 18px 0 0;
+}
+
+.report-panel__header h3 {
+    margin: 0 0 0.3rem;
+    color: #f5fbf5;
+    font-size: 1rem;
+    line-height: 1.2;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.report-panel__header h3 span {
+    font-size: 1.05rem;
+    line-height: 1;
+}
+
+.report-panel__header p {
+    margin: 0;
+    color: rgba(245, 251, 245, 0.8);
+    font-size: 0.78rem;
+    line-height: 1.4;
+}
+
+/* Content expands only when its content requires it */
+.report-analysis-grid .question-list,
+.report-analysis-grid .roadmap-list,
+.report-analysis-grid .skill-list {
+    flex: 0 1 auto;
+    min-height: 0;
+}
+
+/* ---------- Empty / content area ---------- */
+
+.question-list,
+.roadmap-list,
+.skill-list {
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.question-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 32px 36px;
+    box-sizing: border-box;
+}
+
+.empty-state {
+    margin: 0;
+    color: #34483a;
+    line-height: 1.65;
+    font-size: 1rem;
+}
+
+.question-list>.empty-state,
+.roadmap-list>.empty-state,
+.skill-list>.empty-state {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.question-card {
+    padding: 1rem;
+    border-radius: 16px;
+    background: $bg-panel;
+    border: 1px solid $border-color;
+}
+
+.question-card__title {
+    margin: 0 0 0.65rem;
+    color: $text-primary;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.question-card__focus {
+    padding: 0.7rem 0.85rem;
+    border-radius: 12px;
+    background: $accent-soft;
+    border: 1px solid rgba(45, 122, 70, 0.14);
+}
+
+.question-card__focus-label {
+    display: block;
+    color: $accent;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.3rem;
+}
+
+.question-card__focus p {
+    margin: 0;
+    color: $text-muted;
+    line-height: 1.55;
+    font-size: 0.9rem;
+}
+
+/* ---------- Roadmap ---------- */
+
+.report-panel--roadmap {
+    min-height: 0;
+}
+
+.roadmap-list {
+    max-height: none;
+    overflow-y: auto;
+    padding: 32px 36px;
+    box-sizing: border-box;
+    display: grid;
+    gap: 0;
+}
+
+.roadmap-step {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 0.85rem;
+    padding-bottom: 1.1rem;
+}
+
+.roadmap-step__rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.roadmap-step__dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: $accent;
+    border: 3px solid $accent-soft;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+}
+
+.roadmap-step--pending .roadmap-step__dot {
+    background: #d7e0d1;
+    border-color: #eef4e8;
+}
+
+.roadmap-step__line {
+    flex: 1;
+    width: 2px;
+    background: $border-color;
+    margin-top: 0.3rem;
+}
+
+.roadmap-step__body {
+    display: grid;
+    gap: 0.3rem;
+}
+
+.roadmap-step__day {
+    color: $accent;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.roadmap-step__heading {
+    color: $accent-strong;
+    font-size: 0.98rem;
+}
+
+.roadmap-step__desc {
+    margin: 0;
+    color: $text-muted;
+    line-height: 1.6;
+    font-size: 0.88rem;
+}
+
+/* ---------- Skill gap ---------- */
+
+.skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 32px 36px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    margin-bottom: 0;
+}
+
+.skill-row {
+    display: grid;
+    gap: 0.4rem;
+}
+
+.skill-row__label {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    color: $accent-strong;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.skill-row__bar {
+    width: 100%;
+    height: 0.6rem;
+    border-radius: 999px;
+    background: #e8f1e3;
+    overflow: hidden;
+}
+
+.skill-row__fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, $accent 0%, $accent-strong 100%);
+}
+
+.skill-row__fill--urgent {
+    background: linear-gradient(90deg, #c66a6a 0%, $accent-rose 100%);
+}
+
+.skill-row__warning {
+    color: $accent-rose;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+/* ---------- CTA ---------- */
+
+.report-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 0.75rem 0.25rem 0;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.report-cta__copy h3 {
+    margin: 0 0 0.35rem;
+    color: $accent-strong;
+    font-size: 1.1rem;
+}
+
+.report-cta__copy p {
+    margin: 0;
+    color: $text-muted;
+    line-height: 1.6;
+    max-width: 560px;
+}
+
+.report-cta__status {
+    margin: 0.35rem 0 0;
+    color: $accent-strong;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.report-cta__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+
+.report-action-button {
+    border: none;
+    border-radius: 999px;
+    padding: 0.85rem 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    white-space: nowrap;
+}
+
+.report-action-button--primary {
+    background: linear-gradient(90deg, $accent 0%, $accent-strong 100%);
+    color: #fff;
+    box-shadow: 0 10px 22px rgba(24, 71, 37, 0.14);
+}
+
+.report-action-button--secondary {
+    background: #ffffff;
+    color: $accent-strong;
+    border: 1px solid $border-color;
+    box-shadow: none;
+}
+
+.report-action-button[disabled] {
+    opacity: 0.9;
+    cursor: wait;
+}
+
+.report-action-icon {
+    font-size: 0.95rem;
+    line-height: 1;
+}
+
+.report-action-button:hover {
+    transform: translateY(-1px);
+}
+
+/* ---------- Footer ---------- */
+
+.report-site-footer {
+    margin-top: auto;
+    padding: 1rem 24px 1.4rem;
+    background: #08130c;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.report-site-footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.report-site-footer .footer-left,
+.report-site-footer .footer-right {
+    color: #f5f7f3;
+    font-size: 0.92rem;
+}
+
+.report-site-footer .footer-right {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.report-site-footer a {
+    color: #f5f7f3;
+    text-decoration: none;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 960px) {
+
+    .report-hero-grid,
+    .report-analysis-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .report-analysis-grid .report-panel {
+        min-height: 0;
+    }
+
+    .report-site-footer .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .report-cta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 720px) {
+    .report-main-content {
+        padding: 1rem;
+    }
+
+    .report-score-ring {
+        width: 104px;
+        height: 104px;
+    }
+
+    .report-panel {
+        padding: 1.1rem;
+    }
+
+    .report-analysis-grid .report-panel {
+        min-height: 0;
+    }
+
+    .report-panel__header {
+        min-height: 120px;
+        padding: 24px;
+    }
+
+    .question-list,
+    .roadmap-list,
+    .skill-list {
+        padding: 24px;
+    }
+
+    .report-shell-header .container {
+        max-width: calc(100% - 28px);
+    }
+
+    .report-shell-header .dashboard-header__nav {
+        display: none;
+    }
+}
+
+/* =========================================
+   Interview report scrollable panels
+========================================= */
+
+.report-analysis-grid {
+    align-items: start;
+}
+
+.report-analysis-grid > .report-panel {
+    min-width: 0;
+    min-height: 0;
+    align-self: start;
+}
+
+.report-scroll-area {
+    min-height: 0;
+    max-height: 390px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: #b8cbb9 transparent;
+}
+
+.report-scroll-area::-webkit-scrollbar {
+    width: 6px;
+}
+
+.report-scroll-area::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.report-scroll-area::-webkit-scrollbar-thumb {
+    background: #b8cbb9;
+    border-radius: 999px;
+}
+
+.report-scroll-area::-webkit-scrollbar-thumb:hover {
+    background: #8fae93;
+}
+
+/* Keep individual question cards compact inside the scroll area */
+
+.report-scroll-area .question-card {
+    flex-shrink: 0;
+}
+
+/* Roadmap and skills should also scroll independently */
+
+.report-scroll-area .roadmap-step,
+.report-scroll-area .skill-row {
+    flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+    .report-scroll-area {
+        max-height: 360px;
+    }
+}
+
+@media (max-width: 640px) {
+    .report-scroll-area {
+        max-height: 320px;
+        padding-right: 5px;
+    }
+}
