@@ -1,137 +1,147 @@
-## Orbit ##
+# QuickHire
 
-A modular AI-first web platform composed of small microservices (agents, auth, billing, chat) and a Vite + React frontend. Designed for local development with Docker Compose and easy extension with new agents and integrations.
+QuickHire is an AI-powered interview preparation platform that helps candidates prepare for job interviews by combining a resume, self-description, and job description into a tailored interview report. The app generates technical and behavioral questions, highlights skill gaps, outlines a 7-day preparation plan, and can create a resume PDF tailored to the target role.
 
-## Highlights
+## Features
 
-- Microservice backend: gateway, agent runtime, auth, billing, chat, and shared Redis utilities.
-- Multiple agent types: chat, coding, image generation, RAG, vision, PPT/PDF assistants.
-- React + Vite frontend with Redux-powered conversation and message slices.
-- S3-compatible uploads and vector-store helpers for embeddings and retrieval.
-
-## Repository layout
-
-- `backend/` – all backend services and `docker-compose.yml`.
-	- `gateway/` – API gateway and proxy utilities.
-	- `agent/` – agent runtime, agent implementations, rate limiting and vector-store helpers.
-	- `auth/` – authentication service (Firebase integration and `user.model.js`).
-	- `billing/` – payments, plans, credits and Razorpay integration.
-	- `chat/` – chat service and related controllers.
-	- `shared/redis/` – Redis client configuration.
-- `frontend/` – Vite + React application.
-	- `src/components/` – UI components (chat, sidebar, billing drawer, etc.).
-	- `src/features/` – frontend API wrappers.
-	- `src/redux/` – slices and store configuration.
-
-## Quickstart — Local (Docker)
-
-Prerequisites:
-
-- Docker & Docker Compose
-- Node 18+ (for running frontend locally)
-- Optional: S3-compatible storage credentials if you plan to test uploads
-
-Start backend services with Docker Compose:
-
-```bash
-cd backend
-docker-compose up --build
-```
-
-By default the Compose file at [backend/docker-compose.yml](backend/docker-compose.yml) defines the service set and ports. Check it for mapped ports and service names.
-
-Frontend (local development, without Docker):
-
-```bash
-cd frontend
-npm install
-npm run dev
-# open http://localhost:5173
-```
-
-To run the frontend from Docker, inspect the Compose services and add/enable the frontend service if needed.
-
-## Environment variables (common)
-
-Below are the most important environment variables used across services. Exact variable names live in each service `config/` folder.
-
-- `PORT` — HTTP port for the service
-- `NODE_ENV` — `development` or `production`
-- `REDIS_URL` — Redis connection URL
-- `S3_BUCKET`, `S3_REGION`, `S3_ACCESS_KEY`, `S3_SECRET_KEY` — S3-compatible storage
-- `FIREBASE_*` or a `serviceAccountKey.json` — for the `auth` service
-- `OPENAI_API_KEY` (or other model provider keys) — model provider credentials used by agents
-- `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET` — billing (if used)
-
-Create a `.env` for local development or supply env vars via your shell or Docker secrets.
-
-## Run a single service locally
-
-Most backend services are simple Node apps — change into the service folder and run:
-
-```bash
-cd backend/agent
-npm install
-npm run start
-```
-
-Common service entrypoints:
-
-- [backend/agent/index.js](backend/agent/index.js)
-- [backend/auth/index.js](backend/auth/index.js)
-- [backend/gateway/index.js](backend/gateway/index.js)
-
-## Development notes
-
-- Agents are implemented under `backend/agent/agents/`. Add or modify agents there.
-- The gateway uses `utils/proxyWithHeaders.js` to forward requests and headers.
-- Rate limiting and agent configuration live under `backend/agent/config/`.
-- Vector store and embedding helpers are in `backend/agent/utils/`.
-
-## Testing
-
-- Each service may include its own `package.json` test scripts. Run tests from the service folder.
-
-Example:
-
-```bash
-cd backend/agent
-npm test
-```
-
-## Troubleshooting
-
-- Ports conflict: verify ports in [backend/docker-compose.yml](backend/docker-compose.yml).
-- Redis connectivity: confirm `REDIS_URL` and that Redis is reachable from containers.
-- Credentials: ensure API keys and service account files are provided via environment variables or secrets.
-- View logs:
-
-```bash
-docker-compose logs -f <service>
-```
-
-## Security
-
-- Never commit secrets or `serviceAccountKey.json` to source control.
-- Use scoped API keys and rotate them regularly.
-- Validate and sanitize inputs to agent endpoints; consider rate-limiting per-IP and per-user.
+- User authentication with login, registration, OTP verification, password reset, and logout
+- Secure profile and report management
+- Resume upload and parsing for interview analysis
+- AI-generated interview reports using Google Gemini
+- Skill-gap analysis and interview preparation planning
+- Resume PDF generation tailored to the target job description
 
 ## Deployment
 
-- Each service has a `Dockerfile` and can be containerized independently.
-- For production, run behind a secure reverse proxy, use managed Redis and object storage, and configure health checks.
+This project is deployed using:
 
-## Where to look
+- Render for the backend API
+- Vercel for the frontend
 
-- Backend service entrypoints: `backend/*/index.js`
-- Agents: `backend/agent/agents/`
-- Gateway & proxy helpers: `backend/gateway/`
-- Frontend app: [frontend/src/](frontend/src/)
+## Tech Stack
 
-## Contributing
+### Frontend
+- React
+- Vite
+- React Router
+- Sass
+- Axios
 
-- Follow existing project patterns.
-- Add tests for new behavior and run the service-specific test suites.
-- Open a PR with a clear description and any necessary setup steps.
+### Backend
+- Node.js
+- Express
+- MongoDB + Mongoose
+- JWT authentication
+- Multer for file uploads
+- Nodemailer for OTP emails
+- Puppeteer for PDF generation
 
+## Project Structure
+
+```text
+backend/
+  src/
+    controllers/
+    models/
+    routes/
+    services/
+    middlewares/
+    config/
+frontend/
+  src/
+    features/
+    components/
+```
+
+## Prerequisites
+
+Before running the app, make sure you have:
+
+- Node.js 18 or newer
+- npm
+- A MongoDB instance
+- A Google Gemini API key
+- SMTP credentials for OTP email delivery
+
+## Environment Variables
+
+Create a .env file in the backend directory with the following variables:
+
+```env
+PORT=3000
+CLIENT_URL=http://localhost:5173
+MONGO_URI=mongodb://localhost:27017/quickhire
+GOOGLE_GENAI_API_KEY=your_google_genai_api_key
+
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your_smtp_user
+SMTP_PASS=your_smtp_password
+EMAIL_FROM=QuickHire <your-email@example.com>
+```
+
+## Installation
+
+1. Clone the repository
+2. Install backend dependencies:
+
+```bash
+cd backend
+npm install
+```
+
+3. Install frontend dependencies:
+
+```bash
+cd ../frontend
+npm install
+```
+
+## Running the Application
+
+### Start the backend
+
+```bash
+cd backend
+npm run dev
+```
+
+The backend will run on http://localhost:3000.
+
+### Start the frontend
+
+```bash
+cd frontend
+npm run dev
+```
+
+The frontend will run on http://localhost:5173.
+
+## Available Scripts
+
+### Backend
+- npm run dev - Start the backend in development mode with nodemon
+- npm start - Start the backend in production mode
+
+### Frontend
+- npm run dev - Start the Vite development server
+- npm run build - Create a production build
+- npm run preview - Preview the production build locally
+
+## API Overview
+
+The backend exposes authentication and interview-related routes under:
+
+- /api/auth
+- /api/interview
+
+Health check endpoint:
+
+- GET /health
+
+## Notes
+
+- If SMTP is not configured, OTP emails will fall back to console logging rather than sending mail.
+- The app uses cookies for authenticated requests, so the frontend and backend must be served with matching CORS and origin settings.
 
